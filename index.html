@@ -1,0 +1,1323 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lang3s — Consulting, Education & Enterprise NLP</title>
+    <meta
+      name="description"
+      content="Lang3s helps organizations build, adopt and scale AI — through hands-on consulting, executive & team education, and our proprietary NLP & text analytics engine."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* --- Design System & Variables --- */
+      :root {
+        /* Palette: corporate navy / steel-blue, single accent, restrained neutrals */
+        --primary: #1d4ed8; /* Blue 700 */
+        --primary-dark: #17306d;
+        --primary-light: #eef3fc;
+
+        --navy-950: #0b1220;
+        --navy-900: #0f172a;
+        --navy-800: #16213a;
+
+        --slate-50: #f8fafc;
+        --slate-100: #f1f5f9;
+        --slate-200: #e2e8f0;
+        --slate-300: #cbd5e1;
+        --slate-400: #94a3b8;
+        --slate-500: #64748b;
+        --slate-600: #475569;
+        --slate-700: #334155;
+        --slate-800: #1e293b;
+        --slate-900: #0f172a;
+
+        --accent-gold: #b7841f;
+        --accent-gold-light: #fbf3e2;
+        --accent-teal: #0f766e;
+        --accent-teal-light: #eafbf9;
+
+        /* UI Tokens */
+        --radius-sm: 0.25rem;
+        --radius-md: 0.375rem;
+        --radius-lg: 0.5rem;
+        --radius-xl: 0.75rem;
+
+        --shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 0.06);
+        --shadow-md:
+          0 4px 10px -2px rgb(15 23 42 / 0.08),
+          0 2px 4px -2px rgb(15 23 42 / 0.06);
+        --shadow-lg:
+          0 12px 24px -6px rgb(15 23 42 / 0.12),
+          0 4px 8px -4px rgb(15 23 42 / 0.08);
+        --shadow-xl: 0 24px 48px -12px rgb(15 23 42 / 0.18);
+
+        --font-main:
+          "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --container-width: 1180px;
+      }
+
+      /* --- Reset & Base --- */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-main);
+        color: var(--slate-900);
+        background: var(--slate-50);
+        line-height: 1.55;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      button {
+        cursor: pointer;
+        border: none;
+        font-family: inherit;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* --- Utilities --- */
+      .container {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .flex {
+        display: flex;
+      }
+      .flex-col {
+        flex-direction: column;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .justify-between {
+        justify-content: space-between;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .gap-1 {
+        gap: 0.25rem;
+      }
+      .gap-2 {
+        gap: 0.5rem;
+      }
+      .gap-3 {
+        gap: 0.75rem;
+      }
+      .gap-4 {
+        gap: 1rem;
+      }
+      .gap-8 {
+        gap: 2rem;
+      }
+      .hidden {
+        display: none;
+      }
+      .text-center {
+        text-align: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--primary);
+      }
+
+      .eyebrow.on-dark {
+        color: #93c5fd;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 1.25rem;
+        height: 2px;
+        background: currentColor;
+        display: inline-block;
+      }
+
+      @media (min-width: 768px) {
+        .md\:block {
+          display: block;
+        }
+        .md\:flex {
+          display: flex;
+        }
+        .md\:grid-cols-2 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .lg\:flex-row {
+          flex-direction: row;
+        }
+      }
+
+      /* --- Header --- */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--slate-200);
+        padding: 0.9rem 0;
+      }
+
+      .header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        font-weight: 700;
+        font-size: 1.35rem;
+        color: var(--slate-900);
+        letter-spacing: -0.01em;
+      }
+
+      .logo img {
+        height: 2.15rem;
+        width: auto;
+      }
+
+      .main-nav {
+        display: none;
+        gap: 2rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--slate-600);
+      }
+
+      @media (min-width: 900px) {
+        .main-nav {
+          display: flex;
+        }
+      }
+
+      .main-nav a {
+        transition: color 0.15s ease;
+      }
+
+      .main-nav a:hover {
+        color: var(--primary-dark);
+      }
+
+      .btn {
+        padding: 0.6rem 1.15rem;
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: white;
+        box-shadow: 0 4px 10px rgba(29, 78, 216, 0.25);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-dark);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--slate-800);
+        border: 1px solid var(--slate-300);
+      }
+
+      .btn-outline:hover {
+        border-color: var(--slate-500);
+        background: var(--slate-100);
+      }
+
+      .btn-secondary {
+        background-color: var(--slate-900);
+        color: white;
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--slate-700);
+      }
+
+      .btn-demo-badge {
+        position: relative;
+      }
+
+      .btn-demo-badge::after {
+        content: "Coming Soon";
+        position: absolute;
+        top: -9px;
+        right: -8px;
+        background: #fffbeb;
+        color: #92400e;
+        border: 1px solid #fcd34d;
+        font-size: 0.55rem;
+        padding: 2px 6px;
+        border-radius: 99px;
+        font-weight: 700;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .btn-primary:disabled {
+        opacity: 0.85;
+        cursor: not-allowed;
+      }
+
+      /* --- Hero --- */
+      .hero {
+        background: linear-gradient(
+          160deg,
+          var(--navy-950) 0%,
+          var(--navy-900) 55%,
+          var(--primary-dark) 130%
+        );
+        color: white;
+        padding: 5rem 1.5rem 6rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.045) 1px,
+            transparent 1px
+          );
+        background-size: 42px 42px;
+        mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 20%,
+          black 40%,
+          transparent 100%
+        );
+      }
+
+      .hero-inner {
+        position: relative;
+        max-width: 780px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: 2.25rem;
+        font-weight: 800;
+        margin: 1.25rem 0 1.25rem;
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+      }
+
+      @media (min-width: 768px) {
+        .hero-title {
+          font-size: 3.1rem;
+        }
+      }
+
+      .hero-title .accent {
+        color: #93c5fd;
+      }
+
+      .hero-text {
+        font-size: 1.1rem;
+        line-height: 1.75;
+        color: var(--slate-300);
+        max-width: 640px;
+        margin: 0 auto 2.25rem;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 0.85rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .hero-cta .btn {
+        padding: 0.8rem 1.6rem;
+        font-size: 0.9rem;
+      }
+
+      .btn-hero-outline {
+        background: rgba(255, 255, 255, 0.06);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+      }
+
+      .btn-hero-outline:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      /* Stat strip */
+      .stat-strip {
+        position: relative;
+        margin-top: 3.5rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @media (min-width: 768px) {
+        .stat-strip {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .stat-item {
+        text-align: center;
+        border-left: 1px solid rgba(255, 255, 255, 0.15);
+        padding-left: 1.25rem;
+      }
+
+      .stat-item:first-child {
+        border-left: none;
+        padding-left: 0;
+      }
+
+      .stat-item .num {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: white;
+        letter-spacing: -0.02em;
+      }
+
+      .stat-item .label {
+        font-size: 0.78rem;
+        color: var(--slate-400);
+        margin-top: 0.15rem;
+      }
+
+      /* --- Section shared --- */
+      section {
+        padding: 5rem 0;
+      }
+
+      .section-head {
+        max-width: 680px;
+        margin: 0 auto 3rem;
+        text-align: center;
+      }
+
+      .section-head h2 {
+        font-size: 2rem;
+        font-weight: 800;
+        margin: 0.75rem 0 1rem;
+        color: var(--slate-900);
+        letter-spacing: -0.02em;
+      }
+
+      .section-head p {
+        color: var(--slate-600);
+        font-size: 1.05rem;
+      }
+
+      /* --- Pillars (Consulting / Education / Commercial) --- */
+      .pillars-section {
+        background: white;
+        border-top: 1px solid var(--slate-200);
+        border-bottom: 1px solid var(--slate-200);
+      }
+
+      .pillars-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+      }
+
+      @media (min-width: 960px) {
+        .pillars-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .card {
+        background: white;
+        border: 1px solid var(--slate-200);
+        border-top: 3px solid var(--primary);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        box-shadow: var(--shadow-sm);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .card.card-education {
+        border-top-color: var(--accent-teal);
+      }
+      .card.card-commercial {
+        border-top-color: var(--accent-gold);
+      }
+
+      .card-tag {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--slate-500);
+      }
+
+      .icon-box {
+        width: 2.9rem;
+        height: 2.9rem;
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .icon-blue {
+        background: var(--primary-light);
+        color: var(--primary);
+      }
+      .icon-teal {
+        background: var(--accent-teal-light);
+        color: var(--accent-teal);
+      }
+      .icon-gold {
+        background: var(--accent-gold-light);
+        color: var(--accent-gold);
+      }
+
+      .icon-box svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        stroke-width: 1.8;
+      }
+
+      .card h3 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--slate-900);
+      }
+
+      .card p {
+        font-size: 0.95rem;
+        color: var(--slate-600);
+        line-height: 1.65;
+      }
+
+      .card-list {
+        list-style: none;
+        margin-top: 0.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .card-list li {
+        font-size: 0.88rem;
+        color: var(--slate-700);
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .card-list li::before {
+        content: "";
+        flex-shrink: 0;
+        margin-top: 0.5rem;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--primary);
+      }
+
+      .card-education .card-list li::before {
+        background: var(--accent-teal);
+      }
+      .card-commercial .card-list li::before {
+        background: var(--accent-gold);
+      }
+
+      /* --- Capabilities / Skills (dark band) --- */
+      .capabilities-section {
+        background: var(--navy-900);
+        color: white;
+      }
+
+      .capabilities-section .section-head h2 {
+        color: white;
+      }
+      .capabilities-section .section-head p {
+        color: var(--slate-400);
+      }
+
+      .cap-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      @media (min-width: 768px) {
+        .cap-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1100px) {
+        .cap-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .cap-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: var(--radius-lg);
+        padding: 1.75rem 1.5rem;
+        transition:
+          background 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .cap-card:hover {
+        background: rgba(255, 255, 255, 0.07);
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+
+      .cap-num {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #93c5fd;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+      }
+
+      .cap-card h3 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-bottom: 0.6rem;
+      }
+
+      .cap-card p {
+        font-size: 0.88rem;
+        color: var(--slate-400);
+        line-height: 1.6;
+      }
+
+      /* --- Process / How we engage --- */
+      .process-section {
+        background: var(--slate-50);
+      }
+
+      .process-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        counter-reset: step;
+      }
+
+      @media (min-width: 900px) {
+        .process-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .process-step {
+        position: relative;
+        padding-left: 3.25rem;
+      }
+
+      .process-step::before {
+        counter-increment: step;
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: 50%;
+        background: var(--primary);
+        color: white;
+        font-weight: 800;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .process-step h4 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-bottom: 0.4rem;
+        color: var(--slate-900);
+      }
+
+      .process-step p {
+        font-size: 0.92rem;
+        color: var(--slate-600);
+        line-height: 1.6;
+      }
+
+      /* --- Commercial Platform Preview --- */
+      .platform-section {
+        text-align: center;
+        background: white;
+        border-top: 1px solid var(--slate-200);
+      }
+
+      .platform-header {
+        max-width: 720px;
+        margin: 0 auto 2.75rem auto;
+      }
+
+      .browser-mockup {
+        background: var(--slate-100);
+        border: 1px solid var(--slate-200);
+        border-radius: var(--radius-xl);
+        padding: 0.75rem;
+        box-shadow: var(--shadow-xl);
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      .browser-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.35rem 0.5rem 0.75rem;
+      }
+
+      .browser-dot {
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 50%;
+        background: var(--slate-300);
+      }
+
+      .screen-placeholder {
+        background: white;
+        border: 1px solid var(--slate-200);
+        border-radius: var(--radius-lg);
+        aspect-ratio: 16/9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--slate-300);
+      }
+
+      .screen-placeholder .icon {
+        width: 4rem;
+        height: 4rem;
+        opacity: 0.6;
+        margin-bottom: 0.75rem;
+      }
+
+      .screen-placeholder span {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--slate-400);
+      }
+
+      /* --- Contact --- */
+      .contact-section {
+        background: var(--navy-900);
+      }
+
+      .contact-wrap {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      @media (min-width: 900px) {
+        .contact-wrap {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .contact-info h2 {
+        color: white;
+        font-size: 1.9rem;
+        font-weight: 800;
+        margin: 0.75rem 0 1rem;
+        letter-spacing: -0.02em;
+      }
+
+      .contact-info p {
+        color: var(--slate-400);
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-detail-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+
+      .contact-detail-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--slate-300);
+        font-size: 0.92rem;
+      }
+
+      .contact-detail-list svg {
+        width: 1.1rem;
+        height: 1.1rem;
+        color: #93c5fd;
+        flex-shrink: 0;
+      }
+
+      .contact-card {
+        background: white;
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        box-shadow: var(--shadow-xl);
+      }
+
+      .contact-card h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 1.25rem;
+        color: var(--slate-900);
+      }
+
+      .form-group {
+        margin-bottom: 1.1rem;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: var(--slate-700);
+        margin-bottom: 0.4rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        border: 1px solid var(--slate-300);
+        border-radius: var(--radius-md);
+        padding: 0.65rem 0.75rem;
+        font-size: 0.92rem;
+        font-family: inherit;
+        color: var(--slate-900);
+        background: var(--slate-50);
+        transition:
+          border-color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12);
+        background: white;
+      }
+
+      .form-group textarea {
+        min-height: 140px;
+        resize: vertical;
+      }
+
+      .btn-submit {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 0.95rem;
+      }
+
+      /* --- Footer --- */
+      .site-footer {
+        background: var(--navy-950);
+        color: var(--slate-400);
+        padding: 2.5rem 0;
+        font-size: 0.85rem;
+      }
+
+      .footer-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        text-align: center;
+      }
+
+      @media (min-width: 768px) {
+        .footer-inner {
+          flex-direction: row;
+          justify-content: space-between;
+          text-align: left;
+        }
+      }
+
+      .footer-logo {
+        color: var(--slate-200);
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="#" class="logo">
+          <img src="images/img.png" alt="Lang3s Logo" />
+          <span>Lang3s</span>
+        </a>
+        <nav class="main-nav">
+          <a href="#consulting">Consulting</a>
+          <a href="#why-lang3s">Why Lang3s</a>
+          <a href="#education">Education</a>
+          <a href="#commercial">Commercial</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#contact-form">Contact</a>
+        </nav>
+        <div class="flex gap-4">
+          <button class="btn btn-primary btn-demo-badge" disabled>
+            Platform Demo
+          </button>
+          <a class="btn btn-secondary" href="#contact-form">Contact Us</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container hero-inner">
+          <span class="eyebrow on-dark"
+            >Consulting · Education · Commercial NLP</span
+          >
+          <h1 class="hero-title">
+            We help organizations
+            <span class="accent">build, learn, and deploy</span> AI
+          </h1>
+          <p class="hero-text">
+Lang3s cuts through the AI hype to deliver production reality. We
+don't just build your AI systems, we empower your team to own them.
+Whether you are leveraging multimodal frontier models or deploying
+custom local architectures, we provide the expert consultancy,
+hands-on engineering education, and proprietary tooling needed to
+truly master your AI stack.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#contact-form"
+              >Book a Consultation</a
+            >
+            <a class="btn btn-hero-outline" href="#commercial"
+              >Explore the Lang3s Engine</a
+            >
+          </div>
+
+          <div class="stat-strip">
+            <div class="stat-item">
+              <div class="num">Advisory</div>
+              <div class="label">& hands-on delivery</div>
+            </div>
+            <div class="stat-item">
+              <div class="num">Virtual</div>
+              <div class="label">team seminars</div>
+            </div>
+            <div class="stat-item">
+              <div class="num">Proprietary</div>
+              <div class="label">text analytics engine</div>
+            </div>
+            <div class="stat-item">
+              <div class="num">End-to-end</div>
+              <div class="label">from strategy to production</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Lang3s -->
+      <section
+        class="pillars-section"
+        style="background: white"
+        id="why-lang3s"
+      >
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">The Lang3s Advantage</span>
+            <h2>25 Years of Production AI</h2>
+            <p>
+              We don't just follow AI trends; we've been building the systems
+              that define them for over two decades. Our foundation is built on
+              solving complex, high-stakes problems.
+            </p>
+          </div>
+
+          <div class="pillars-grid">
+            <div class="card">
+              <span class="card-tag">Aerospace & Defense</span>
+              <h3>Mission-Critical Reliability</h3>
+              <p>
+                Engineered and deployed robust AI solutions for NASA and
+                national defense initiatives, operating in environments where
+                precision, security, and scale are non-negotiable.
+              </p>
+            </div>
+
+            <div class="card">
+              <span class="card-tag">Market Intelligence</span>
+              <h3>Deep Consumer Understanding</h3>
+              <p>
+                Architected advanced NLP and cultural AI pipelines to decode
+                unstructured text, bridging the gap between raw language data
+                and nuanced consumer behavior.
+              </p>
+            </div>
+
+            <div class="card">
+              <span class="card-tag">Predictive Analytics</span>
+              <h3>High-Stakes Strategy</h3>
+              <p>
+                Leveraged multimodal data and predictive models to drive
+                unconventional business decisions, including data-driven M&A
+                analysis for eSports franchise acquisitions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Three Pillars -->
+      <section class="pillars-section" id="pillars">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">What We Do</span>
+            <h2>Build. Teach. Deploy.</h2>
+            <p>
+              Moving from AI prototypes to real-world applications requires deep
+              technical expertise. Lang3s bridges that gap. We help you navigate
+              the complexities of AI, from integrating cloud-based frontier
+              models to optimizing custom, locally-hosted pipelines—while
+              equipping your team with the skills to maintain and scale them.
+            </p>
+          </div>
+
+          <div class="pillars-grid">
+            <!-- Consulting -->
+            <div class="card" id="consulting">
+              <div class="icon-box icon-blue">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                  />
+                </svg>
+              </div>
+              <span class="card-tag">Managing &amp; Building</span>
+              <h3>Consulting</h3>
+              <p>
+                We embed with your team to plan, build, and manage NLP and AI
+                initiatives end to end, from strategy and architecture through
+                delivery and operation.
+              </p>
+              <ul class="card-list">
+                <li>Program &amp; project management for AI initiatives</li>
+                <li>Solution architecture and technical due diligence</li>
+                <li>Hands-on build and delivery alongside your team</li>
+                <li>Ongoing advisory and system ownership</li>
+              </ul>
+            </div>
+
+            <!-- Education -->
+            <div class="card card-education" id="education">
+              <div class="icon-box icon-teal">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.26 10.147a60.436 60.436 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.904a48.627 48.627 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.57 50.57 0 0 0-2.658-.813A59.905 59.905 0 0 1 12 3.493a59.902 59.902 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443"
+                  />
+                </svg>
+              </div>
+              <span class="card-tag">Seminars &amp; Enablement</span>
+              <h3>Education</h3>
+              <p>
+                We bring practical NLP and AI training directly to your
+                organization, from executive briefings to deep technical
+                workshops for engineering teams.
+              </p>
+              <ul class="card-list">
+                <li>On-site and remote seminars for your company</li>
+                <li>Executive briefings on AI strategy and risk</li>
+                <li>Applied workshops on model development and agentic AI</li>
+                <li>Custom curricula tailored to your domain and stack</li>
+              </ul>
+            </div>
+
+            <!-- Commercial -->
+            <div class="card card-commercial" id="commercial">
+              <div class="icon-box icon-gold">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21 7.5V18M15 7.5V18M3 16.811V8.69c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811Z"
+                  />
+                </svg>
+              </div>
+              <span class="card-tag">Lang3s Engine</span>
+              <h3>Commercial</h3>
+              <p>
+                Alongside our general AI consultancy, we offer the Lang3s
+                Engine, our proprietary platform for organizations needing
+                advanced text analytics and deep cultural intelligence.
+              </p>
+              <ul class="card-list">
+                <li>Turnkey text processing and analytics pipeline</li>
+                <li>Built-in visualization and clustering tools</li>
+                <li>Deployable on-premise or in your cloud</li>
+                <li>Backed by our consulting and support team</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Capabilities / Skills -->
+      <section class="capabilities-section" id="capabilities">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow on-dark">Core Capabilities</span>
+            <h2>Where our team adds value</h2>
+            <p>
+              Every engagement draws on the same core skill set, whether we're
+              delivering a project, teaching your team, or supporting our
+              platform.
+            </p>
+          </div>
+
+          <div class="cap-grid">
+            <div class="cap-card">
+              <div class="cap-num">01</div>
+              <h3>Education</h3>
+              <p>
+                Structured, practical training for engineers, analysts, and
+                leadership — built around your real data and use cases, not
+                generic slides.
+              </p>
+            </div>
+            <div class="cap-card">
+              <div class="cap-num">02</div>
+              <h3>Custom Model Development</h3>
+              <p>
+                Design, fine-tuning, and evaluation of NLP and text analytics
+                models tailored to your domain, data, and performance
+                requirements.
+              </p>
+            </div>
+            <div class="cap-card">
+              <div class="cap-num">03</div>
+              <h3>Agentic Development</h3>
+              <p>
+                Design and delivery of agentic AI systems from tool-using
+                assistants to autonomous pipelines integrated into your
+                workflows.
+              </p>
+            </div>
+            <div class="cap-card">
+              <div class="cap-num">04</div>
+              <h3>Leadership</h3>
+              <p>
+                Hands-on technical leadership for AI programs setting direction,
+                managing delivery risk, and building lasting in-house
+                capability.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How We Engage -->
+      <section class="process-section">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Engagement Model</span>
+            <h2>How we work together</h2>
+            <p>
+              A straightforward path from first conversation to a solution your
+              team owns.
+            </p>
+          </div>
+
+          <div class="process-grid">
+            <div class="process-step">
+              <h4>Assess</h4>
+              <p>
+                We start with your data, systems, and goals to scope the right
+                mix of consulting, education, or platform adoption.
+              </p>
+            </div>
+            <div class="process-step">
+              <h4>Build &amp; Train</h4>
+              <p>
+                We deliver the engagement building solutions, running seminars,
+                or configuring the Lang3s Engine for your environment.
+              </p>
+            </div>
+            <div class="process-step">
+              <h4>Transfer &amp; Support</h4>
+              <p>
+                We hand over clear ownership to your team, with documentation,
+                training, and ongoing support as needed.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="contact-section" id="contact-form">
+        <div class="container">
+          <div class="contact-wrap">
+            <div class="contact-info">
+              <span class="eyebrow on-dark">Get In Touch</span>
+              <h2>Let's talk about your project</h2>
+              <p>
+                Tell us about your consulting need, team training goals, or
+                interest in the Lang3s Engine — we'll follow up to schedule a
+                call.
+              </p>
+              <ul class="contact-detail-list">
+                <li>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+                    />
+                  </svg>
+                  Response within one business day
+                </li>
+                <li>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                    />
+                  </svg>
+                  Consulting, education, and platform inquiries welcome
+                </li>
+              </ul>
+            </div>
+
+            <div class="contact-card">
+              <h3>Send us a message</h3>
+              <form action="https://formspree.io/f/xdaangzp" method="POST">
+                <div class="form-group">
+                  <label for="email">Your email</label>
+                  <input type="email" name="email" id="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="message">Your message</label>
+                  <textarea name="message" id="message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span class="footer-logo">Lang3s</span>
+        <span
+          >&copy; 2024 Lang3s. Consulting, education, and enterprise NLP.</span
+        >
+      </div>
+    </footer>
+  </body>
+</html>
